@@ -1,0 +1,125 @@
+<head>
+    <title>Commently</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+          integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+{{> sAlert}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-outline-secondary">
+                <div id="lorem-ipsum" class="card-block lorem-ipsum">
+                    <h1>HTML Ipsum Presents</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis mi, vestibulum sit amet ultrices eu, fringilla id sem. Praesent maximus lacus tellus, et ornare purus suscipit sit amet. Duis vestibulum elementum est, eget vestibulum velit dignissim eu.
+                        Cras fermentum magna in scelerisque dictum. Duis dictum felis et sem semper lobortis. Mauris interdum auctor massa, id maximus est iaculis sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc congue pellentesque ex eu elementum.
+                    </p>
+                    <h1>Ipsum Paragraph 2</h1>
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum diam elit, volutpat ut faucibus et, mollis ac nisl. Fusce ex urna, euismod sit amet enim non, dictum aliquet ligula.
+                            Maecenas non tempor lorem. Phasellus tincidunt dapibus urna eu accumsan. Mauris feugiat fringilla nisl, ac egestas erat sodales in.
+                            Cras id sem efficitur, commodo nisl non, congue nibh. Aenean eu turpis euismod erat cursus blandit.
+                        </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 portfolio-item">
+            <div class="card">
+                <div class="card-block card-title clearfix">
+                    <h4 class="card-title pull-md-left">Comments</h4>
+                    <a class="btn btn-primary pull-md-right" href="#" id="add-comment" data-toggle="modal" data-target="#commentModal" role="button">Add Comment</a>
+                    {{> modal}}
+                </div>
+
+                {{> comments}}
+
+                <div class="card-block">
+                    <a href="#" id="clear-all-comments" class="card-link pull-md-right">Clear All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Commently 2016</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
+        integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
+        integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"
+        integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU"
+        crossorigin="anonymous"></script>
+
+</body>
+
+<template name="modal">
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Provide a comment on the selected text</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="form-control" id="commentText" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Next time</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-comment">Save comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="comments">
+    <ul class="list-group list-group-flush comments">
+        {{#each comment}}
+            <li class="list-group-item {{isSelected}}">
+                <div class="clearfix comment-wrap">
+                    <span class="pull-md-left comment" >{{text}}</span>
+                    <button type="button" class="btn btn-outline-danger pull-md-right delete-comment">X</button>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>

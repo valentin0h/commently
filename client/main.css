@@ -1,0 +1,12 @@
+/* CSS declarations go here */
+.highlight {
+    background-color: yellow;
+}
+
+.comments .selected {
+    background-color: lightgray;
+}
+
+.container {
+    margin-top: 2.5%;
+}
